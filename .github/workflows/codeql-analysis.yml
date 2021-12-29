@@ -3,8 +3,6 @@ name: CodeQL Analysis
 on:
   push:
   pull_request:
-  schedule:
-    - cron: '0 8 * * *'
 
 jobs:
   analyze:
@@ -31,5 +29,12 @@ jobs:
       - name: Perform CodeQL Analysis
         id: analyze_codeql
         uses: github/codeql-action/analyze@v1
+
+      - uses: actions/upload-artifact@v2
+        if: ${{ always() }}
+        with:
+          name: codeql-db
+          path: ${{ runner.temp }}/codeql_databases
+
 
 # Built with ❤ by [Pipeline Foundation](https://pipeline.foundation)
