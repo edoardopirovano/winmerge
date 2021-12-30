@@ -8,6 +8,8 @@ jobs:
   analyze:
     name: Analyze
     runs-on: windows-latest
+    env:
+      SEMMLE_MEMORY_MAPPING: "false"
     steps:
       - name: Checkout repository
         id: checkout_repo
