@@ -8,8 +8,6 @@ jobs:
   analyze:
     name: Analyze
     runs-on: windows-latest
-    env:
-      SEMMLE_MEMORY_MAPPING: "false"
     steps:
       - name: Checkout repository
         id: checkout_repo
@@ -20,6 +18,7 @@ jobs:
         uses: github/codeql-action/init@v1
         with:
           queries: security-and-quality
+          tools: https://github.com/dsp-testing/codeql-cli-nightlies/releases/download/codeql-bundle-20211231-manual/codeql-bundle.tar.gz
 
       - name: Build project
         id: build_project
